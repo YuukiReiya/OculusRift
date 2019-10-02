@@ -1,2 +1,18 @@
 Library/
 Packages/
+OculusRiftMusicGame/Assets/Resources/
+.vs/
+追加素材/
+README.md
+ローカル バージョン整合保持/
+RhythmGame/.vs/
+RhythmGame/.vscode/
+RhythmGame/Library
+RhythmGame/Logs
+RhythmGame/obj
+RhythmGame/Packages
+RhythmGame/Assets/ImportAsset/AssetStore/
+RhythmGame/Assets/ImportAsset/Github/
+RhythmGame/Assets/ImportAsset/Standard/
+RhythmGame/Assets/Resources/
+RhythmGame/Assets/StreamingAssets/
