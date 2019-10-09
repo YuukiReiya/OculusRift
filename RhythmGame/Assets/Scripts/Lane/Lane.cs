@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
-
 namespace Game
 {
     public class Lane : MonoBehaviour
     {
         [SerializeField, Tooltip("ノーツの流れるレーン番号")] uint laneNumber;
         [SerializeField, Tooltip("関連付けさせるイベントトリガー")] EventTrigger eventTrigger;
+        #region
+        [Header("VR")]
+        [SerializeField]OVRInput.RawButton button;
+        [SerializeField] LaneTapEffect effect;
+        #endregion
         private void Awake()
         {
             SetupTapEvent();
@@ -74,5 +78,22 @@ namespace Game
         {
             if (!TryGetComponent<EventTrigger>(out eventTrigger)) { return; }
         }
+
+        #region VR
+        private void Update()
+        {
+            Debug.Log("tootteri");
+            ControllerInput();
+        }
+        private void ControllerInput()
+        {
+            if(OVRInput.GetDown(button))
+            {
+                OnTapLane();
+                effect.Execute();
+            }
+        }
+        #endregion
+
     }
 }

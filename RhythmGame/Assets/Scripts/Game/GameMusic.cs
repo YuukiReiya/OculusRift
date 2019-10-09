@@ -88,8 +88,8 @@ namespace Game
         AudioType GetAudioType(string filePath)
         {
             var extension = Path.GetExtension(filePath);
-            if (extension == Define.c_MP3) { return AudioType.MPEG; }
-            else if(extension == Define.c_WAV) { return AudioType.WAV; }
+            //if (extension == Define.c_MP3) { return AudioType.MPEG; }
+            //else if(extension == Define.c_WAV) { return AudioType.WAV; }
             return AudioType.UNKNOWN;
         }
 

@@ -1,7 +1,10 @@
-﻿using System.Collections;
+﻿#define VR
+#if VR
+#define XR
+#endif
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace Common 
 {
     public static class Define
@@ -11,9 +14,9 @@ namespace Common
         /// </summary>
         public const uint c_LaneCount = 3;
 
-        public const float c_PerfectTime = 0.033f;
-        public const float c_GreatTime = 0.1f;
-        public const float c_GoodTime = 0.2f;
+        public const float c_PerfectTime = 0.066f;
+        public const float c_GreatTime = 0.15f;
+        public const float c_GoodTime = 0.25f;
 
         /// <summary>
         /// ローカルファイル指定用のパス
