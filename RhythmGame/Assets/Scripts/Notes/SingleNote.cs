@@ -50,22 +50,23 @@ namespace Game
 
             //TODO:汚い
             //Vector3 ndir = (this.transform.position - NotesController.Instance.JustTimingPosition).normalized;
-            Vector3 ndir = (-this.transform.up.normalized);
+            Vector3 ndir = (-this.transform.forward.normalized);
 
-            var pos = NotesController.Instance.JustTimingPosition - ndir * timing * NotesController.Instance.NotesSpeed;
+            //TODO:n秒後に目標地点到達:目標地点を定義→Zeroは中央のみ
+            var pos = Vector3.zero - ndir * timing * NotesController.Instance.NotesSpeed;
             pos.x = x;
             this.transform.position = pos;
         }
 
         public void Register()
         {
-            NotesController.Instance.notes.Add(this);
+            NotesController.Instance.Notes.Add(this);
         }
 
         public void Unregister()
         {
             this.gameObject.SetActive(false);
-            NotesController.Instance.notes.Remove(this);
+            NotesController.Instance.Notes.Remove(this);
         }
     }
 }

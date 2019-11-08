@@ -23,7 +23,7 @@ public class WWWLoader : Yuuki.SingletonMonoBehaviour<WWWLoader>
     public static string StreamingAssetsPath { get {return path= Application.dataPath + "/Raw"; } }
 #else
     // ReleaseBuild
-    public static readonly string StreamingAssetsPath { get { return Application.dataPath + "/StreamingAssets"; } }
+    public static string StreamingAssetsPath { get { return Application.dataPath + "/StreamingAssets"; } }
 #endif
 
     // Start is called before the first frame update

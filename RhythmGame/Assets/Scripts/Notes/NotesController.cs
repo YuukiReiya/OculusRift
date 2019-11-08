@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEngine.Networking;
 
 namespace Game
 {
@@ -12,39 +13,35 @@ namespace Game
         [Header("Notes Control Parameter")]
         [SerializeField] float noteSpeed;
         [SerializeField, Tooltip("算出されたノーツのキーを受け付けない時間")] float waitTime = 5.0f;
-        [System.Serializable]
-        struct TimingLine
-        {
-            public float y, z;
-        }
-        [Header("Lane Parameter")]
-        [SerializeField] TimingLine timingLine;//判定ラインの座標
         [SerializeField] AudioSource audioSource;
 
         //private param
-        public List<INote> notes;
 
         //accessor
-        public Vector3 JustTimingPosition { get { return new Vector3(0, timingLine.y, timingLine.z); } }
         public float NotesSpeed { get { return noteSpeed; } }
         public float WaitTime { get { return waitTime; } }
 
         public float elapsedTime { get; private set; }
 
+        public List<INote> Notes { get; private set; }
+
         protected override void Awake()
         {
             base.Awake();
-            notes = new List<INote>();
+            Notes = new List<INote>();
         }
 
         // Start is called before the first frame update
-        void Start() { }
+        void Start() {
+            StartCoroutine(MainRoutine());
+        }
 
         // Update is called once per frame
         void Update()
         {
             Move();
-            elapsedTime = audioSource.time;
+            //elapsedTime = audioSource.time;
+            elapsedTime = Time.timeSinceLevelLoad;
         }
 
         /// <summary>
@@ -52,12 +49,12 @@ namespace Game
         /// </summary>
         void Renewal()
         {
-            notes.RemoveAll(it => it.isReset);
+            Notes.RemoveAll(it => it.isReset);
         }
 
         void Move()
         {
-            foreach (var it in notes)
+            foreach (var it in Notes)
             {
                 it.Move();
             }
@@ -66,9 +63,6 @@ namespace Game
         void OnDrawGizmos()
         {
             Gizmos.color = Color.red;
-
-            float left = -10, right = 10;
-            Gizmos.DrawLine(new Vector3(left, timingLine.y, timingLine.z), new Vector3(right, timingLine.y, timingLine.z));
         }
 
         public void Setup(Chart chart)
@@ -85,44 +79,25 @@ namespace Game
             }
         }
 
-#if false
-    //何故かタップ時にすべてのレーンでレーン番号が"3"になる。
 
-    /// <summary>
-    /// タップ時に呼ばれるイベントのセットアップ
-    /// TODO:イベントが増えるようなら登録メソッドを用意してパブリックにする
-    /// </summary>
-    void TapEventsSetup()
-    {
-        //レーンタップ
-        for(int i=0;i<laneTapEvents.Length;++i)
+        IEnumerator MainRoutine()
         {
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerDown;
-            entry.callback.AddListener((it) => { Debug.Log("lane" + i); OnTapLane(i); });
-            laneTapEvents[i].triggers.Add(entry);
+            //譜面データのロード
+            using (var req = UnityWebRequest.Get(Application.streamingAssetsPath + "\\" + "Charts\\" + "chart_1.json"))
+            {
+                yield return req.SendWebRequest();
+                if (req.isNetworkError) { yield break; }
+
+                var chart = JsonUtility.FromJson<Chart>(req.downloadHandler.text);
+                foreach (var it in chart.timing)
+                {
+                    SingleNote note = SingleNotesPool.Instance.GetObject().GetComponent<SingleNote>();
+                    note.Setup(1, it);
+                    Notes.Add(note);
+                }
+            }
+            audioSource.Play();
+            yield break;
         }
-    }
-
-    void OnTapLane(int laneNumber)
-    {
-        if (notes.Where(it => it.LaneNumber == laneNumber).Count() == 0) { return; }
-
-        //判定ノーツ
-        INote note = notes.
-            //対象のレーン
-            Where(it => it.LaneNumber == laneNumber).
-            //判定ラインに最も近いノーツ = (判定時間 - 再生時間 の差分が最も小さい)
-            OrderBy(it => Mathf.Abs(it.DownTime-audioSource.time)).
-            First();
-
-        //ノーツが"n"秒経過していたら処理しない
-        var tapTime = note.DownTime - audioSource.time;
-        if (Mathf.Abs(tapTime) < 10.0f) { return; }
-
-        //
-        note.Unregister();
-    }
-#endif
     }
 }

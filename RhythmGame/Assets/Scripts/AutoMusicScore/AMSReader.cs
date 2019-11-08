@@ -39,17 +39,5 @@ public class AMSReader : MonoBehaviour
                 prevSec = it;
             }
         }
-
-        Debug.Log("完了");
-
-        //  リスト完成
-        {
-            //int bpm = 158;
-            //float inttime = 60 / bpm * 4;
-            //for(int i=0;i<buffer.Count;++i)
-            //{
-
-            //}
-        }
     }
 }

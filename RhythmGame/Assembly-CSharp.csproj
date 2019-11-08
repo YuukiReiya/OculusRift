@@ -500,6 +500,7 @@
     <Compile Include="Assets\ImportAsset\Oculus\VoiceMod\Scripts\Helpers\OVRMicInput.cs" />
     <Compile Include="Assets\ImportAsset\Oculus\VoiceMod\Scripts\OVRVoiceMod.cs" />
     <Compile Include="Assets\ImportAsset\Oculus\VoiceMod\Scripts\OVRVoiceModContext.cs" />
+    <Compile Include="Assets\NewVersionScripts\Note.cs" />
     <Compile Include="Assets\Scripts\Aspect\FixedAspecter.cs" />
     <Compile Include="Assets\Scripts\Aspect\FixedAspectRatio.cs" />
     <Compile Include="Assets\Scripts\AutoMusicScore\AMSReader.cs" />
@@ -521,11 +522,16 @@
     <Compile Include="Assets\Scripts\Framework\MethodExpansion.cs" />
     <Compile Include="Assets\Scripts\Framework\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Framework\SingletonObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Game\CombEffectCanvas.cs" />
     <Compile Include="Assets\Scripts\Game\Dummy.cs" />
     <Compile Include="Assets\Scripts\Game\GameController.cs" />
     <Compile Include="Assets\Scripts\Game\GameMusic.cs" />
+    <Compile Include="Assets\Scripts\Game\ScoreEffectCanvas.cs" />
     <Compile Include="Assets\Scripts\Input\TouchController.cs" />
+    <Compile Include="Assets\Scripts\Judge\Judge.cs" />
+    <Compile Include="Assets\Scripts\Lane\CenterLane.cs" />
     <Compile Include="Assets\Scripts\Lane\Lane.cs" />
+    <Compile Include="Assets\Scripts\Lane\LaneManager.cs" />
     <Compile Include="Assets\Scripts\Notes\INote.cs" />
     <Compile Include="Assets\Scripts\Notes\NoteDecorate.cs" />
     <Compile Include="Assets\Scripts\Notes\NotesController.cs" />
@@ -534,8 +540,10 @@
     <Compile Include="Assets\Scripts\Proxy\MusicStartProxy.cs" />
     <Compile Include="Assets\Scripts\Score\ScoreController.cs" />
     <Compile Include="Assets\Scripts\TapLights\LaneTapEffect.cs" />
+    <Compile Include="Assets\Scripts\Util\ColliderUtilDisplay.cs" />
     <Compile Include="Assets\Scripts\Util\ColliderUtilSetter.cs" />
     <Compile Include="Assets\Scripts\Util\GameObjectUtilSetter.cs" />
+    <Compile Include="Assets\Scripts\Util\ParentSetUtil.cs" />
     <Compile Include="Assets\Scripts\Util\TextMeshConvertTMP.cs" />
     <Compile Include="Assets\Scripts\WWW\WWWLoader.cs" />
     <Compile Include="Assets\Scripts\WWW\WWWTest.cs" />

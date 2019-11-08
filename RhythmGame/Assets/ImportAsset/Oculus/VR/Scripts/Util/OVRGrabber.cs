@@ -159,6 +159,8 @@ public class OVRGrabber : MonoBehaviour
         }
     }
 
+    #region Unity Callback
+#if false
     void OnTriggerEnter(Collider otherCollider)
     {
         // Get the grab trigger
@@ -193,6 +195,8 @@ public class OVRGrabber : MonoBehaviour
             m_grabCandidates.Remove(grabbable);
         }
     }
+#endif
+#endregion
 
     protected void CheckForGrabOrRelease(float prevFlex)
     {

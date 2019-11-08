@@ -2,36 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.XR;
 using System.Linq;
 namespace Game
 {
-    public class Lane : MonoBehaviour
+    public abstract class Lane : MonoBehaviour
     {
-        [SerializeField, Tooltip("ノーツの流れるレーン番号")] uint laneNumber;
-        [SerializeField, Tooltip("関連付けさせるイベントトリガー")] EventTrigger eventTrigger;
-        #region
+        [SerializeField, Tooltip("ノーツの流れるレーン番号")]protected uint laneNumber;
+        #region VR
         [Header("VR")]
-        [SerializeField]OVRInput.RawButton button;
         [SerializeField] LaneTapEffect effect;
         #endregion
-        private void Awake()
-        {
-            SetupTapEvent();
-        }
 
-        void SetupTapEvent()
+        protected void OnTapLane()
         {
-            EventTrigger.Entry entry = new EventTrigger.Entry();
-            entry.eventID = EventTriggerType.PointerDown;
-            entry.callback.AddListener((it) => { OnTapLane(); });
-            eventTrigger.triggers.Add(entry);
-        }
-
-        void OnTapLane()
-        {
-            Debug.Log("lane = " + laneNumber);
-
-            var notes = NotesController.Instance.notes;
+            var notes = NotesController.Instance.Notes;
             if (notes.Where(it => it.LaneNumber == laneNumber).Count() == 0) { return; }
             INote note = notes.
                 //対象のレーン
@@ -74,26 +59,6 @@ namespace Game
             note.Unregister();
         }
 
-        private void Reset()
-        {
-            if (!TryGetComponent<EventTrigger>(out eventTrigger)) { return; }
-        }
-
-        #region VR
-        private void Update()
-        {
-            Debug.Log("tootteri");
-            ControllerInput();
-        }
-        private void ControllerInput()
-        {
-            if(OVRInput.GetDown(button))
-            {
-                OnTapLane();
-                effect.Execute();
-            }
-        }
-        #endregion
-
+        public abstract void Execute();
     }
 }
