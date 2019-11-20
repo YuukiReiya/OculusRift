@@ -8,8 +8,8 @@ namespace Game
     {
         public bool isReset { get; }
 
-        int laneNumber;
-        public int LaneNumber
+        uint laneNumber;
+        public uint LaneNumber
         {
             get { return 1; }
         }
@@ -17,32 +17,6 @@ namespace Game
         float dt;
         public float DownTime { get { return this.dt; } }
 
-        public void Setup(int laneNumber, float downTime)
-        {
-            this.laneNumber = laneNumber;
-            dt = downTime;
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            Register();
-        }
-
-        protected void OnEnable()
-        {
-            //Register();
-        }
-
-        protected void OnDisable()
-        {
-            //Unregister();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        }
         public void Move()
         {
             var x = this.transform.position.x;
@@ -58,14 +32,33 @@ namespace Game
             this.transform.position = pos;
         }
 
-        public void Register()
+        /// <summary>
+        /// ノーツの登録
+        /// </summary>
+        public void Register(uint laneNumber, float downTime)
         {
-            NotesController.Instance.Notes.Add(this);
-        }
+            this.laneNumber = laneNumber;
+            dt = downTime;
 
+            //レーンの位置に合わせた初期化
+            //TODO:汚い<マジックナンバー>
+            var pos = this.transform.position;
+            switch (LaneNumber)
+            {
+                //左
+                case 0: pos.x = -4; break;
+                //中
+                case 1: pos.x = 0; break;
+                //右
+                case 2: pos.x = 4; break;
+            }
+            this.transform.position = pos;
+        }
         public void Unregister()
         {
             this.gameObject.SetActive(false);
+            //このまま場所を変えないと再利用した際に一瞬視界に入ってしまうので視覚外に移動させる
+            this.gameObject.transform.position = new Vector3(-100, -100, -100);
             NotesController.Instance.Notes.Remove(this);
         }
     }

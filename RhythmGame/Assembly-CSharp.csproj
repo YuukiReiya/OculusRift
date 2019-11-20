@@ -500,14 +500,17 @@
     <Compile Include="Assets\ImportAsset\Oculus\VoiceMod\Scripts\Helpers\OVRMicInput.cs" />
     <Compile Include="Assets\ImportAsset\Oculus\VoiceMod\Scripts\OVRVoiceMod.cs" />
     <Compile Include="Assets\ImportAsset\Oculus\VoiceMod\Scripts\OVRVoiceModContext.cs" />
-    <Compile Include="Assets\NewVersionScripts\Note.cs" />
+    <Compile Include="Assets\NewVersionScripts\VRCameraFixedPotision.cs" />
     <Compile Include="Assets\Scripts\Aspect\FixedAspecter.cs" />
     <Compile Include="Assets\Scripts\Aspect\FixedAspectRatio.cs" />
-    <Compile Include="Assets\Scripts\AutoMusicScore\AMSReader.cs" />
     <Compile Include="Assets\Scripts\AutoMusicScore\AutoMusicScoreFactor.cs" />
     <Compile Include="Assets\Scripts\BPM\BPMChecker.cs" />
     <Compile Include="Assets\Scripts\Chart\Chart.cs" />
+    <Compile Include="Assets\Scripts\Chart\ChartManager.cs" />
+    <Compile Include="Assets\Scripts\Chart\ChartProxy.cs" />
     <Compile Include="Assets\Scripts\Common\Common.cs" />
+    <Compile Include="Assets\Scripts\Dialog\DialogController.cs" />
+    <Compile Include="Assets\Scripts\Fade\FadeController.cs" />
     <Compile Include="Assets\Scripts\FileIO\FileIO.cs" />
     <Compile Include="Assets\Scripts\FileIO\FIOtest.cs" />
     <Compile Include="Assets\Scripts\FileIO\Read.cs" />
@@ -526,6 +529,7 @@
     <Compile Include="Assets\Scripts\Game\Dummy.cs" />
     <Compile Include="Assets\Scripts\Game\GameController.cs" />
     <Compile Include="Assets\Scripts\Game\GameMusic.cs" />
+    <Compile Include="Assets\Scripts\Game\PauseCanvas.cs" />
     <Compile Include="Assets\Scripts\Game\ScoreEffectCanvas.cs" />
     <Compile Include="Assets\Scripts\Input\TouchController.cs" />
     <Compile Include="Assets\Scripts\Judge\Judge.cs" />

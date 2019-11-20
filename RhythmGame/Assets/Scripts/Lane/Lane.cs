@@ -10,8 +10,8 @@ namespace Game
     {
         [SerializeField, Tooltip("ノーツの流れるレーン番号")]protected uint laneNumber;
         #region VR
-        [Header("VR")]
-        [SerializeField] LaneTapEffect effect;
+        //[Header("VR")]
+        //[SerializeField] LaneTapEffect effect;
         #endregion
 
         protected void OnTapLane()

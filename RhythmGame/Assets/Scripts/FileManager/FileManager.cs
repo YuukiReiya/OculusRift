@@ -20,12 +20,14 @@ namespace Yuuki.FileManager
         [SerializeField] UIGrid grid;
         [SerializeField] UIScrollBar scrollBar;
         [Header("Animation")]
-        [SerializeField,Tooltip("スケーリングするUIの親オブジェクト")] GameObject scaleParentObj;
-        [SerializeField,Range(0,3)] float scaleSec;
+        [SerializeField, Tooltip("スケーリングするUIの親オブジェクト")] GameObject scaleParentObj;
+        [SerializeField, Range(0, 3)] float scaleSec;
 
         //private param
         IEnumerator routine;
+
         //public param
+
         //accessor
         public string CurrentDirectory { get; private set; }
 
@@ -38,7 +40,6 @@ namespace Yuuki.FileManager
         // Update is called once per frame
         void Update()
         {
-
         }
 
         void UpdateCollider()
@@ -85,7 +86,6 @@ namespace Yuuki.FileManager
                 child.parent = null;
                 Destroy(child.gameObject);
             }
-
             //並び替え
             scrollBar.value = 0;//スクロールバーを先頭に
         }
@@ -93,10 +93,10 @@ namespace Yuuki.FileManager
         public void Display()
         {
             //  フォルダ
-            foreach(var it in Directory.GetDirectories(CurrentDirectory))
+            foreach (var it in Directory.GetDirectories(CurrentDirectory))
             {
                 var name = Path.GetFileName(it);
-                Create(prefabs.folder,name);
+                Create(prefabs.folder, name);
             }
             //  ファイル
             foreach (var it in Directory.GetFiles(CurrentDirectory))
@@ -157,12 +157,12 @@ namespace Yuuki.FileManager
             routine = ScalingRoutine(scaleParentObj, Vector3.one, Vector3.zero, scaleSec);
             var fileIO = new FileIO.FileIO();
             //カレントディレクトリの情報保存
-            fileIO.CreateFile(Define.c_SettingFilePath, CurrentDirectory, true);
+            fileIO.CreateFile(Define.c_SettingFilePath, CurrentDirectory, FileIO.FileIO.FileIODesc.Overwrite);
 
             this.StartCoroutine(routine, () => { routine = null; });
         }
 
-        IEnumerator ScalingRoutine(GameObject obj,Vector3 from,Vector3 to,float sec)
+        IEnumerator ScalingRoutine(GameObject obj, Vector3 from, Vector3 to, float sec)
         {
             float time = Time.time;
             while (Time.time < time + sec)

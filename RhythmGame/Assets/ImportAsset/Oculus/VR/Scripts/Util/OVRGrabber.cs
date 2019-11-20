@@ -160,7 +160,7 @@ public class OVRGrabber : MonoBehaviour
     }
 
     #region Unity Callback
-#if false
+#if true
     void OnTriggerEnter(Collider otherCollider)
     {
         // Get the grab trigger

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Game
 {
@@ -8,24 +6,30 @@ namespace Game
     {
         protected override void Awake()
         {
+            base.Awake();
             Setup();
         }
-        // Start is called before the first frame update
-        void Start()
-        {
 
+        public override GameObject GetObject()
+        {
+            return base.GetObject();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
+        #region コンテキストメニュー
         [ContextMenu("Create Pool Object Instances")]
         protected override void CreatePoolObjects()
         {
             base.CreatePoolObjects();
         }
+        [ContextMenu("Clear Pool Object Instances")]
+        private void ClearPoolObjects()
+        {
+            GetAllChild<SingleNote>();
+            foreach (var it in poolList)
+            {
+                DestroyImmediate(it.gameObject);
+            }
+        }
+        #endregion
     }
 }

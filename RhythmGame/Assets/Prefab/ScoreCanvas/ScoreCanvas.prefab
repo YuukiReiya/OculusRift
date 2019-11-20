@@ -63,8 +63,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 483c64ae18fe3b44cb3b62ec82f5098e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -87,7 +85,7 @@ GameObject:
   - component: {fileID: 2989941955349832825}
   - component: {fileID: 2989941955349832822}
   - component: {fileID: 2989941955349832823}
-  - component: {fileID: 2989941955349832820}
+  - component: {fileID: 600649922325118126}
   m_Layer: 5
   m_Name: ScoreCanvas
   m_TagString: Untagged
@@ -175,7 +173,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2989941955349832820
+--- !u!114 &600649922325118126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,7 +182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2989941955349832821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b59c323a51a318429c628bb510fa358, type: 3}
+  m_Script: {fileID: 11500000, guid: 616b9eac144f3744a93142325a44a7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isDefaultDontDestroy: 0
